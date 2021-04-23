@@ -7,18 +7,7 @@
 
   <!-- Stylesheets
 	============================================= -->
-  <link
-    href="https://fonts.googleapis.com/css?family=Lato:300,400,400i,700|Raleway:300,400,500,600,700|Crete+Round:400i"
-    rel="stylesheet" type="text/css" />
-  <link rel="stylesheet" href="css/bootstrap.css" type="text/css" />
-  <link rel="stylesheet" href="css/style.css" type="text/css" />
-  <link rel="stylesheet" href="css/dark.css" type="text/css" />
-  <link rel="stylesheet" href="css/font-icons.css" type="text/css" />
-  <link rel="stylesheet" href="css/animate.css" type="text/css" />
-  <link rel="stylesheet" href="css/magnific-popup.css" type="text/css" />
-  <link rel="stylesheet" href="css/custom.css" type="text/css" />
-
-  <link rel="stylesheet" href="css/responsive.css" type="text/css" />
+  <?php wp_head(); ?>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <!-- Document Title
@@ -120,102 +109,16 @@
 
             <div id="primary-menu-trigger"><i class="icon-reorder"></i></div>
 
-            <!-- ul Main Menu
-            ======================================== -->
-            <ul>
-              <li><a href="#">
-                  <div>Menu Item 1</div>
-                </a>
-                <ul>
-                  <li>
-                    <a href="#">
-                      <div>Submenu Item 1</div>
-                    </a>
-                    <ul>
-                      <li><a href="#">
-                          <div>Submenu Item 1</div>
-                        </a></li>
-                      <li><a href="#">
-                          <div>Submenu Item 2</div>
-                        </a></li>
-                    </ul>
-                  </li>
-                  <li><a href="#">
-                      <div>Submenu Item 2</div>
-                    </a></li>
-                </ul>
-              </li>
-              <li><a href="#">
-                  <div>Menu Item 2</div>
-                </a>
-                <ul>
-                  <li><a href="#">
-                      <div>Submenu Item 1</div>
-                    </a>
-                    <ul>
-                      <li><a href="#">
-                          <div>Submenu Item 1</div>
-                        </a></li>
-                      <li><a href="#">
-                          <div>Submenu Item 2</div>
-                        </a></li>
-                    </ul>
-                  </li>
-                  <li><a href="#">
-                      <div>Submenu Item 2</div>
-                    </a></li>
-                </ul>
-              </li>
-              <li><a href="#">
-                  <div>Menu Item 3</div>
-                </a>
-                <ul>
-                  <li><a href="#">
-                      <div>Submenu Item 1</div>
-                    </a>
-                    <ul>
-                      <li><a href="#">
-                          <div>Submenu Item 1</div>
-                        </a>
-                        <ul>
-                          <li><a href="#">
-                              <div>Submenu Item 1</div>
-                            </a></li>
-                          <li><a href="#">
-                              <div>Submenu Item 2</div>
-                            </a></li>
-                          <li><a href="#">
-                              <div>Submenu Item 3</div>
-                            </a></li>
-                        </ul>
-                      </li>
-                      <li><a href="#">
-                          <div>Submenu Item 2</div>
-                        </a></li>
-                      <li><a href="#">
-                          <div>Submenu Item 3</div>
-                        </a></li>
-                    </ul>
-                  </li>
-                  <li><a href="#">
-                      <div>Submenu Item 2</div>
-                    </a>
-                    <ul>
-                      <li><a href="#">
-                          <div>Submenu Item 1</div>
-                        </a></li>
-                      <li><a href="#">
-                          <div>Submenu Item 2</div>
-                        </a></li>
-                    </ul>
-                  </li>
-                  <li><a href="#">
-                      <div>Submenu Item 3</div>
-                    </a></li>
-                </ul>
-              </li>
-              <li><a href="#">Menu Item 4</a></li>
-            </ul><!-- ul Main Menu end -->
+            <?php
+            if (has_nav_menu('primary')) {
+              wp_nav_menu([
+                'theme_location'      =>  'primary',
+                'container'           =>  false,
+                'fallback_cb'         =>  false,
+                'depth'               =>  4
+              ]);
+            }
+            ?>
 
             <!-- Top Cart
             ============================================= -->
@@ -286,8 +189,7 @@
             <div class="container clearfix">
               <span class="badge badge-danger bnews-title">Breaking News:</span>
 
-              <div class="fslider bnews-slider nobottommargin" data-speed="800" data-pause="6000" data-arrows="false"
-                data-pagi="false">
+              <div class="fslider bnews-slider nobottommargin" data-speed="800" data-pause="6000" data-arrows="false" data-pagi="false">
                 <div class="flexslider">
                   <div class="slider-wrap">
                     <div class="slide"><a href="#"><strong>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
@@ -359,8 +261,7 @@
 
               <div class="entry clearfix">
                 <div class="entry-image">
-                  <iframe src="http://player.vimeo.com/video/87701971" width="500" height="281" frameborder="0"
-                    webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+                  <iframe src="http://player.vimeo.com/video/87701971" width="500" height="281" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
                 </div>
                 <div class="entry-title">
                   <h2><a href="blog-single-full.html">This is a Standard post with an Embedded Video</a></h2>
@@ -385,14 +286,11 @@
                   <div class="fslider" data-arrows="false" data-lightbox="gallery">
                     <div class="flexslider">
                       <div class="slider-wrap">
-                        <div class="slide"><a href="images/blog/full/10.jpg" data-lightbox="gallery-item"><img
-                              class="image_fade" src="images/blog/standard/10.jpg" alt="Standard Post with Gallery"></a>
+                        <div class="slide"><a href="images/blog/full/10.jpg" data-lightbox="gallery-item"><img class="image_fade" src="images/blog/standard/10.jpg" alt="Standard Post with Gallery"></a>
                         </div>
-                        <div class="slide"><a href="images/blog/full/20.jpg" data-lightbox="gallery-item"><img
-                              class="image_fade" src="images/blog/standard/20.jpg" alt="Standard Post with Gallery"></a>
+                        <div class="slide"><a href="images/blog/full/20.jpg" data-lightbox="gallery-item"><img class="image_fade" src="images/blog/standard/20.jpg" alt="Standard Post with Gallery"></a>
                         </div>
-                        <div class="slide"><a href="images/blog/full/21.jpg" data-lightbox="gallery-item"><img
-                              class="image_fade" src="images/blog/standard/21.jpg" alt="Standard Post with Gallery"></a>
+                        <div class="slide"><a href="images/blog/full/21.jpg" data-lightbox="gallery-item"><img class="image_fade" src="images/blog/standard/21.jpg" alt="Standard Post with Gallery"></a>
                         </div>
                       </div>
                     </div>
@@ -419,8 +317,7 @@
 
               <div class="entry clearfix">
                 <div class="entry-image clearfix">
-                  <iframe width="100%" scrolling="no" frameborder="no"
-                    src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/115823769&amp;auto_play=false&amp;hide_related=true&amp;visual=true"></iframe>
+                  <iframe width="100%" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/115823769&amp;auto_play=false&amp;hide_related=true&amp;visual=true"></iframe>
                 </div>
                 <div class="entry-title">
                   <h2><a href="single.html">This is an Embedded Audio Post</a></h2>
@@ -554,10 +451,7 @@
 
   <!-- External JavaScripts
   ============================================= -->
-  <script src="js/jquery.js"></script>
-  <script src="js/plugins.js"></script>
-  <script src="js/functions.js"></script>
-
+  <?php wp_footer(); ?>
 </body>
 
 </html>
