@@ -16,7 +16,7 @@
 
 </head>
 
-<body class="stretched no-transition">
+<body <?php body_class('stretched no-transition') ?>>
 
     <!-- Document Wrapper
   ============================================= -->
@@ -30,7 +30,7 @@
                 <div class="col_half nobottommargin">
 
                     <!-- Top Links
-          ============================================= -->
+                    ============================================= -->
                     <div class="top-links">
                         <ul>
                             <li><a href="#">Home</a></li>
