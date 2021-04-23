@@ -115,7 +115,8 @@
                 'theme_location'      =>  'primary',
                 'container'           =>  false,
                 'fallback_cb'         =>  false,
-                'depth'               =>  4
+                'depth'               =>  4,
+                // 'walker'              =>  new JU_Customer_Nav_Walker()
               ]);
             }
             ?>
