@@ -9,11 +9,6 @@
 	============================================= -->
     <?php wp_head(); ?>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-    <!-- Document Title
-	============================================= -->
-    <title>Index Template</title>
-
 </head>
 
 <body <?php body_class('stretched no-transition') ?>>
@@ -90,7 +85,15 @@
                 <!-- Logo
         ============================================= -->
                 <div id="logo">
-                    <a href="#" class="standard-logo">Udemy</a>
+                    <?php
+                    if (has_custom_logo()) {
+                        the_custom_logo();
+                    } else {
+                    ?>
+                        <a href="<?php echo home_url('/') ?>" class="standard-logo"><?php bloginfo('name'); ?></a>
+                    <?php
+                    }
+                    ?>
                 </div><!-- #logo end -->
 
                 <div class="top-advert">
