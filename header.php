@@ -27,11 +27,17 @@
                     <!-- Top Links
                     ============================================= -->
                     <div class="top-links">
-                        <ul>
-                            <li><a href="#">Home</a></li>
-                            <li><a href="#">FAQs</a></li>
-                            <li><a href="#">Contact</a></li>
-                        </ul>
+                        <?php
+                        if (has_nav_menu('secondary')) {
+                            wp_nav_menu([
+                                'theme_location'      =>  'secondary',
+                                'container'           =>  false,
+                                'fallback_cb'         =>  false,
+                                'depth'               =>  1,
+                                // 'walker'              =>  new JU_Customer_Nav_Walker()
+                            ]);
+                        }
+                        ?>
                     </div><!-- .top-links end -->
 
                 </div>
@@ -39,34 +45,59 @@
                 <div class="col_half fright col_last nobottommargin">
 
                     <!-- Top Social
-          ============================================= -->
+                    ============================================= -->
                     <div id="top-social">
                         <ul>
-                            <li>
-                                <a href="#" class="si-facebook">
-                                    <span class="ts-icon"><i class="icon-facebook"></i></span><span class="ts-text">Facebook</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="si-twitter">
-                                    <span class="ts-icon"><i class="icon-twitter"></i></span><span class="ts-text">Twitter</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="si-instagram">
-                                    <span class="ts-icon"><i class="icon-instagram2"></i></span><span class="ts-text">Instagram</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="tel:+55.55.5555555" class="si-call">
-                                    <span class="ts-icon"><i class="icon-call"></i></span><span class="ts-text">+55.55.5555555</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="mailto:info@email.com" class="si-email3">
-                                    <span class="ts-icon"><i class="icon-email3"></i></span><span class="ts-text">info@email.com</span>
-                                </a>
-                            </li>
+
+                            <?php
+                            if (get_theme_mod('ju_facebook_handle')) {
+                            ?>
+                                <li>
+                                    <a href="https://facebook.com/<?php echo get_theme_mod('ju_facebook_handle'); ?>" class="si-facebook">
+                                        <span class="ts-icon"><i class="icon-facebook"></i></span><span class="ts-text">Facebook</span>
+                                    </a>
+                                </li>
+                            <?php
+                            }
+                            if (get_theme_mod('ju_twitter_handle')) {
+                            ?>
+                                <li>
+                                    <a href="https://twitter.com/<?php echo get_theme_mod('ju_twitter_handle'); ?>" class="si-twitter">
+                                        <span class="ts-icon"><i class="icon-twitter"></i></span><span class="ts-text">Twitter</span>
+                                    </a>
+                                </li>
+                            <?php
+                            }
+                            if (get_theme_mod('ju_instagram_handle')) {
+                            ?>
+                                <li>
+                                    <a href="https://instagram.com/<?php echo get_theme_mod('ju_instagram_handle'); ?>" class="si-instagram">
+                                        <span class="ts-icon"><i class="icon-instagram2"></i></span><span class="ts-text">Instagram</span>
+                                    </a>
+                                </li>
+                            <?php
+                            }
+                            if (get_theme_mod('ju_phone_handle')) {
+                            ?>
+                                <li>
+                                    <a href="tel:<?php echo get_theme_mod('ju_phone_handle'); ?>" class="si-call">
+                                        <span class="ts-icon"><i class="icon-call"></i></span><span class="ts-text"><?php echo get_theme_mod('ju_phone_handle'); ?></span>
+                                    </a>
+                                </li>
+                            <?php
+                            }
+                            if (get_theme_mod('ju_email_handle')) {
+                            ?>
+                                <li>
+                                    <a href="mailto:<?php echo get_theme_mod('ju_email_handle'); ?>" class="si-email3">
+                                        <span class="ts-icon"><i class="icon-email3"></i></span><span class="ts-text"><?php echo get_theme_mod('ju_email_handle'); ?></span>
+                                    </a>
+                                </li>
+                            <?php
+                            }
+
+                            ?>
+
                         </ul>
                     </div><!-- #top-social end -->
 
@@ -77,13 +108,13 @@
         </div><!-- #top-bar end -->
 
         <!-- Header
-    ============================================= -->
+         ============================================= -->
         <header id="header" class="sticky-style-2">
 
             <div class="container clearfix">
 
                 <!-- Logo
-        ============================================= -->
+                ============================================= -->
                 <div id="logo">
                     <?php
                     if (has_custom_logo()) {
@@ -97,7 +128,11 @@
                 </div><!-- #logo end -->
 
                 <div class="top-advert">
-                    <img src="images/magazine/ad.jpg">
+                    <?php
+                    if (function_exists('quads_ad')) {
+                        echo quads_ad(['location' => 'test_header']);
+                    }
+                    ?>
                 </div>
 
             </div>
@@ -124,55 +159,68 @@
                         }
                         ?>
 
-                        <!-- Top Cart
-            ============================================= -->
-                        <div id="top-cart">
-                            <a href="#" id="top-cart-trigger"><i class="icon-shopping-cart"></i><span>5</span></a>
-                            <div class="top-cart-content">
-                                <div class="top-cart-title">
-                                    <h4>Shopping Cart</h4>
-                                </div>
-                                <div class="top-cart-items">
-                                    <div class="top-cart-item clearfix">
-                                        <div class="top-cart-item-image">
-                                            <a href="#"><img src="images/shop/small/1.jpg" /></a>
+                        <?php
+                        if (get_theme_mod('ju_header_show_cart')) {
+                        ?>
+                            <!-- Top Cart
+                            ============================================= -->
+                            <div id="top-cart">
+                                <a href="#" id="top-cart-trigger"><i class="icon-shopping-cart"></i><span>5</span></a>
+                                <div class="top-cart-content">
+                                    <div class="top-cart-title">
+                                        <h4>Shopping Cart</h4>
+                                    </div>
+                                    <div class="top-cart-items">
+                                        <div class="top-cart-item clearfix">
+                                            <div class="top-cart-item-image">
+                                                <a href="#"><img src="images/shop/small/1.jpg" /></a>
+                                            </div>
+                                            <div class="top-cart-item-desc">
+                                                <a href="#">Blue Round-Neck Tshirt</a>
+                                                <span class="top-cart-item-price">$19.99</span>
+                                                <span class="top-cart-item-quantity">x 2</span>
+                                            </div>
                                         </div>
-                                        <div class="top-cart-item-desc">
-                                            <a href="#">Blue Round-Neck Tshirt</a>
-                                            <span class="top-cart-item-price">$19.99</span>
-                                            <span class="top-cart-item-quantity">x 2</span>
+                                        <div class="top-cart-item clearfix">
+                                            <div class="top-cart-item-image">
+                                                <a href="#"><img src="images/shop/small/6.jpg" /></a>
+                                            </div>
+                                            <div class="top-cart-item-desc">
+                                                <a href="#">Light Blue Denim Dress</a>
+                                                <span class="top-cart-item-price">$24.99</span>
+                                                <span class="top-cart-item-quantity">x 3</span>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="top-cart-item clearfix">
-                                        <div class="top-cart-item-image">
-                                            <a href="#"><img src="images/shop/small/6.jpg" /></a>
-                                        </div>
-                                        <div class="top-cart-item-desc">
-                                            <a href="#">Light Blue Denim Dress</a>
-                                            <span class="top-cart-item-price">$24.99</span>
-                                            <span class="top-cart-item-quantity">x 3</span>
-                                        </div>
+                                    <div class="top-cart-action clearfix">
+                                        <span class="fleft top-checkout-price">$114.95</span>
+                                        <button class="button button-3d button-small nomargin fright">
+                                            View Cart
+                                        </button>
                                     </div>
                                 </div>
-                                <div class="top-cart-action clearfix">
-                                    <span class="fleft top-checkout-price">$114.95</span>
-                                    <button class="button button-3d button-small nomargin fright">
-                                        View Cart
-                                    </button>
-                                </div>
-                            </div>
-                        </div><!-- #top-cart end -->
+                            </div><!-- #top-cart end -->
 
-                        <!-- Top Search
-            ============================================= -->
-                        <div id="top-search">
-                            <a href="#" id="top-search-trigger">
-                                <i class="icon-search3"></i><i class="icon-line-cross"></i>
-                            </a>
-                            <form action="#" method="get">
-                                <input type="text" name="q" class="form-control" placeholder="Type &amp; Hit Enter.." value="">
-                            </form>
-                        </div><!-- #top-search end -->
+                        <?php
+                        }
+                        if (get_theme_mod('ju_header_show_search')) {
+                        ?>
+                            <!-- Top Search
+                        ============================================= -->
+                            <div id="top-search">
+                                <a href="#" id="top-search-trigger">
+                                    <i class="icon-search3"></i><i class="icon-line-cross"></i>
+                                </a>
+                                <form action="<?php echo esc_url(home_url('/')); ?>" method="get">
+                                    <input type="text" name="q" class="form-control" placeholder="<?php _e('Type &amp; Hit Enter..', 'test'); ?>" value="<?php the_search_query(); ?>">
+                                </form>
+                            </div><!-- #top-search end -->
+
+                        <?php
+                        }
+                        ?>
+
+
 
                     </div>
 
